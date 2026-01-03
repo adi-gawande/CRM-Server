@@ -21,7 +21,15 @@ const USE_COOKIES = process.env.USE_COOKIES === "true";
  *
  * @returns {Object} created user (mongoose doc)
  */
-export const createUserAccount = async ({ email, password, role = "user" }) => {
+export const createUserAccount = async ({
+  email,
+  password,
+  role = "admin",
+  companyId = null,
+  userId = null,
+}) => {
+  console.log(email, password);
+
   if (!email || !password) {
     throw new Error("Email and password are required");
   }
@@ -43,6 +51,8 @@ export const createUserAccount = async ({ email, password, role = "user" }) => {
     email: normalizedEmail,
     password: hashedPassword,
     role,
+    companyId,
+    userId,
   });
 
   return user;
