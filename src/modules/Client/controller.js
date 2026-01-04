@@ -1,10 +1,10 @@
-import client from "./model.js";
+import Client from "./model.js";
 
 /**
  * CREATE CLIENT
  */
 export const createClient = async (req, res) => {
-  const client = await client.create(req.body);
+  const client = await Client.create(req.body);
   res.status(201).json({
     success: true,
     data: client,
@@ -15,7 +15,7 @@ export const createClient = async (req, res) => {
  * GET ALL CLIENTS
  */
 export const getAllClients = async (req, res) => {
-  const clients = await client.find().sort({ createdAt: -1 });
+  const clients = await Client.find().sort({ createdAt: -1 });
 
   res.status(200).json({
     success: true,
@@ -28,7 +28,7 @@ export const getAllClients = async (req, res) => {
  * GET CLIENT BY ID
  */
 export const getClientById = async (req, res) => {
-  const client = await client.findById(req.params.id);
+  const client = await Client.findById(req.params.id);
 
   if (!client) {
     return res.status(404).json({
@@ -47,7 +47,7 @@ export const getClientById = async (req, res) => {
  * UPDATE CLIENT
  */
 export const updateClient = async (req, res) => {
-  const client = await client.findByIdAndUpdate(req.params.id, req.body, {
+  const client = await Client.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
     runValidators: true,
   });
@@ -69,7 +69,7 @@ export const updateClient = async (req, res) => {
  * DELETE CLIENT
  */
 export const deleteClient = async (req, res) => {
-  const client = await client.findById(req.params.id);
+  const client = await Client.findById(req.params.id);
 
   if (!client) {
     return res.status(404).json({

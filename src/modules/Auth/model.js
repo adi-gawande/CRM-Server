@@ -17,6 +17,9 @@ const userSchema = new mongoose.Schema(
       ],
       default: "staff",
     },
+    pin: {
+      type: Number,
+    },
     companyId: {
       type: mongoose.Schema.Types.ObjectId,
       default: null,
