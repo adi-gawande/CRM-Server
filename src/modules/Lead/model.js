@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const clientSchema = new mongoose.Schema(
+const leadSchema = new mongoose.Schema(
   {
     companyId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -92,6 +92,6 @@ const clientSchema = new mongoose.Schema(
   }
 );
 
-const client = mongoose.model("client", clientSchema);
+const lead = mongoose.model("lead", leadSchema);
 
-export default client;
+export default lead;
