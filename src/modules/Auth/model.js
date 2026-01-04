@@ -11,7 +11,7 @@ const userSchema = new mongoose.Schema(
         "medical officer",
         "nurse",
         "staff",
-        "admin",
+        "admin", 
         "staff",
         "super-admin",
       ],

@@ -3,18 +3,22 @@ import Prefix from "./model.js";
 // ✅ Create Prefix
 export const createPrefix = async (req, res) => {
   try {
-    const { name } = req.body;
+    const { name, companyId } = req.body;
 
     if (!name) {
       return res.status(400).json({ message: "Prefix name is required" });
     }
 
-    const existing = await Prefix.findOne({ name, deleted: false });
-    if (existing) {
-      return res.status(400).json({ message: "Prefix already exists" });
+    if (!companyId) {
+      return res.status(400).json({ message: "Company ID is required" });
     }
 
-    const prefix = new Prefix({ name });
+    const existing = await Prefix.findOne({ name, companyId, deleted: false });
+    if (existing) {
+      return res.status(400).json({ message: "Prefix already exists for this company" });
+    }
+
+    const prefix = new Prefix({ name, companyId });
     await prefix.save();
 
     res.status(201).json({ message: "Prefix created successfully", prefix });
@@ -23,10 +27,16 @@ export const createPrefix = async (req, res) => {
   }
 };
 
-// ✅ Get All Prefixes (non-deleted)
+// ✅ Get All Prefixes (non-deleted) for a specific company
 export const getPrefixes = async (req, res) => {
   try {
-    const prefixes = await Prefix.find({ deleted: false }).sort({
+    const { companyId } = req.query;
+
+    if (!companyId) {
+      return res.status(400).json({ message: "Company ID is required" });
+    }
+
+    const prefixes = await Prefix.find({ companyId, deleted: false }).sort({
       name: 1,
     });
     res.status(200).json(prefixes);
@@ -39,9 +49,17 @@ export const getPrefixes = async (req, res) => {
 export const updatePrefix = async (req, res) => {
   try {
     const { id } = req.params;
-    const { name } = req.body;
+    const { name, companyId } = req.body;
 
-    const prefix = await Prefix.findByIdAndUpdate(id, { name }, { new: true });
+    if (!companyId) {
+      return res.status(400).json({ message: "Company ID is required" });
+    }
+
+    const prefix = await Prefix.findOneAndUpdate(
+      { _id: id, companyId },
+      { name },
+      { new: true }
+    );
 
     if (!prefix) {
       return res.status(404).json({ message: "Prefix not found" });
@@ -57,8 +75,14 @@ export const updatePrefix = async (req, res) => {
 export const deletePrefix = async (req, res) => {
   try {
     const { id } = req.params;
-    const prefix = await Prefix.findByIdAndUpdate(
-      id,
+    const { companyId } = req.body;
+
+    if (!companyId) {
+      return res.status(400).json({ message: "Company ID is required" });
+    }
+
+    const prefix = await Prefix.findOneAndUpdate(
+      { _id: id, companyId },
       { deleted: true },
       { new: true }
     );

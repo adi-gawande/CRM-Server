@@ -1,11 +1,12 @@
 import mongoose from "mongoose";
 
-const prefixSchema = new mongoose.Schema(
+const gstPercentageSchema = new mongoose.Schema(
   {
-    name: {
-      type: String,
+    gstPercentage: {
+      type: Number,
       required: true,
-      trim: true,
+      min: 0,
+      max: 100,
     },
     companyId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -20,5 +21,5 @@ const prefixSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Prefix = mongoose.model("Prefix", prefixSchema);
-export default Prefix;
+const GstPercentage = mongoose.model("GstPercentage", gstPercentageSchema);
+export default GstPercentage;

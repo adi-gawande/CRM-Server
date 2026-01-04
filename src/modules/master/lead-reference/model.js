@@ -1,8 +1,8 @@
 import mongoose from "mongoose";
 
-const prefixSchema = new mongoose.Schema(
+const leadReferenceSchema = new mongoose.Schema(
   {
-    name: {
+    leadReference: {
       type: String,
       required: true,
       trim: true,
@@ -20,5 +20,5 @@ const prefixSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Prefix = mongoose.model("Prefix", prefixSchema);
-export default Prefix;
+const LeadReference = mongoose.model("LeadReference", leadReferenceSchema);
+export default LeadReference;

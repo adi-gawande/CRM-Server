@@ -18,6 +18,13 @@ import paymentModeRoutes from "./modules/master/payment-mode/routes.js";
 import payeeCategoryRoutes from "./modules/master/payee-category/routes.js";
 import billGroupRoutes from "./modules/master/service-group/routes.js";
 import ourClientRoutes from "./modules/OurClient/routes.js";
+import bankDetailsRoutes from "./modules/master/bankdetails/routes.js";
+import productCategoryRoutes from "./modules/master/product-category/routes.js";
+import subProductCategoryRoutes from "./modules/master/sub-product-category/routes.js";
+import leadReferenceRoutes from "./modules/master/lead-reference/routes.js";
+import leadStatusRoutes from "./modules/master/lead-status/routes.js";
+import leadTypeRoutes from "./modules/master/lead-type/routes.js";
+import gstPercentageRoutes from "./modules/master/gst-percentage/routes.js";
 
 const app = express();
 
@@ -38,6 +45,13 @@ app.use("/our-client", ourClientRoutes);
 // app.use("/bill-group", billGroupRoutes);
 app.use("/prefix", prefixRoutes);
 app.use("/diploma", diplomaRoutes);
+app.use("/bank-details", bankDetailsRoutes);
+app.use("/product-category", productCategoryRoutes);
+app.use("/sub-product-category", subProductCategoryRoutes);
+app.use("/lead-reference", leadReferenceRoutes);
+app.use("/lead-status", leadStatusRoutes);
+app.use("/lead-type", leadTypeRoutes);
+app.use("/gst-percentage", gstPercentageRoutes);
 // app.use("/graduation", graduationRoutes);
 // app.use("/post-graduation", postGraduationRoutes);
 // app.use("/speciality", SuperSpecializationRoutes);
