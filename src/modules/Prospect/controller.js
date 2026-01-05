@@ -15,7 +15,12 @@ export const createProspect = async (req, res) => {
  * GET ALL CLIENTS
  */
 export const getAllProspects = async (req, res) => {
-  const prospects = await Prospect.find().sort({ createdAt: -1 });
+  const prospects = await Prospect.find()
+    .populate("leadReferenceId", "leadReference") // only required fields
+    .populate("leadStatusId", "leadStatus")
+    .populate("leadTypeId", "leadType")
+    .populate("leadSourceId", "leadSource")
+    .sort({ createdAt: -1 });
 
   res.status(200).json({
     success: true,

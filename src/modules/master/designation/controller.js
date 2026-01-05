@@ -3,40 +3,41 @@ import Designation from "./model.js";
 // ✅ Create Designation
 export const createDesignation = async (req, res) => {
   try {
-    const { employeeRole, designationName, designationCode, description } = req.body;
+    const { designationName, designationCode, description } = req.body;
 
     if (!employeeRole || !designationName || !designationCode) {
-      return res.status(400).json({ 
-        message: "Employee Role, Designation Name, and Designation Code are required" 
+      return res.status(400).json({
+        message:
+          "Employee Role, Designation Name, and Designation Code are required",
       });
     }
 
-    const existing = await Designation.findOne({ 
+    const existing = await Designation.findOne({
       $or: [
         { designationCode, deleted: false },
-        { designationName, deleted: false }
-      ]
+        { designationName, deleted: false },
+      ],
     });
-    
+
     if (existing) {
-      return res.status(400).json({ 
-        message: existing.designationCode === designationCode 
-          ? "Designation code already exists" 
-          : "Designation name already exists" 
+      return res.status(400).json({
+        message:
+          existing.designationCode === designationCode
+            ? "Designation code already exists"
+            : "Designation name already exists",
       });
     }
 
-    const designation = new Designation({ 
-      employeeRole, 
-      designationName, 
-      designationCode: designationCode.toUpperCase(), 
-      description 
+    const designation = new Designation({
+      designationName,
+      designationCode: designationCode.toUpperCase(),
+      description,
     });
     await designation.save();
 
-    res.status(201).json({ 
-      message: "Designation created successfully", 
-      designation 
+    res.status(201).json({
+      message: "Designation created successfully",
+      designation,
     });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
@@ -59,32 +60,32 @@ export const getDesignations = async (req, res) => {
 export const updateDesignation = async (req, res) => {
   try {
     const { id } = req.params;
-    const { employeeRole, designationName, designationCode, description } = req.body;
+    const { designationName, designationCode, description } = req.body;
 
     // Check if another designation has the same code or name (excluding current one)
     const existing = await Designation.findOne({
       _id: { $ne: id },
       $or: [
         { designationCode: designationCode?.toUpperCase(), deleted: false },
-        { designationName, deleted: false }
-      ]
+        { designationName, deleted: false },
+      ],
     });
 
     if (existing) {
-      return res.status(400).json({ 
-        message: existing.designationCode === designationCode?.toUpperCase() 
-          ? "Designation code already exists" 
-          : "Designation name already exists" 
+      return res.status(400).json({
+        message:
+          existing.designationCode === designationCode?.toUpperCase()
+            ? "Designation code already exists"
+            : "Designation name already exists",
       });
     }
 
     const designation = await Designation.findByIdAndUpdate(
       id,
-      { 
-        employeeRole, 
-        designationName, 
-        designationCode: designationCode?.toUpperCase(), 
-        description 
+      {
+        designationName,
+        designationCode: designationCode?.toUpperCase(),
+        description,
       },
       { new: true }
     );
@@ -93,9 +94,9 @@ export const updateDesignation = async (req, res) => {
       return res.status(404).json({ message: "Designation not found" });
     }
 
-    res.status(200).json({ 
-      message: "Designation updated successfully", 
-      designation 
+    res.status(200).json({
+      message: "Designation updated successfully",
+      designation,
     });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });

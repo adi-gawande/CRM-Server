@@ -77,11 +77,6 @@ const employeeSchema = new mongoose.Schema(
       trim: true,
     },
 
-    role: {
-      type: String,
-      required: true,
-    },
-
     gender: {
       type: String,
       enum: ["male", "female", "other"],
@@ -193,39 +188,10 @@ const employeeSchema = new mongoose.Schema(
         ref: "PostGraduation",
       },
 
-      superSpecialization: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "SuperSpecialization",
-      },
-
       other: {
         type: String,
         trim: true,
       },
-    },
-
-    // ======================
-    // REGISTRATION / COUNCIL
-    // ======================
-    registrationNumber: {
-      type: String,
-      trim: true,
-    },
-
-    councilName: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Council",
-    },
-
-    verified: {
-      type: Boolean,
-      default: false,
-    },
-
-    verifiedBy: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User",
-      default: null,
     },
 
     // ======================
