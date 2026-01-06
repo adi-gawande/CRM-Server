@@ -2,11 +2,6 @@ import mongoose from "mongoose";
 
 const designationSchema = new mongoose.Schema(
   {
-    employeeRole: {
-      type: String,
-      required: true,
-      trim: true,
-    },
     designationName: {
       type: String,
       required: true,

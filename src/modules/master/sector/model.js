@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const superSpecializationSchema = new mongoose.Schema(
+const sectorSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -15,9 +15,5 @@ const superSpecializationSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const SuperSpecialization = mongoose.model(
-  "SuperSpecialization",
-  superSpecializationSchema
-);
-
-export default SuperSpecialization;
+const Sector = mongoose.model("Sector", sectorSchema);
+export default Sector;

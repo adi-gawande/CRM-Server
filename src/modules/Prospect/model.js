@@ -85,6 +85,26 @@ const prospectSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
+    leadTypeId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "LeadType",
+      default: null,
+    },
+    leadSourceId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "LeadSource",
+      default: null,
+    },
+    leadReferenceId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "LeadReference",
+      default: null,
+    },
+    leadStatusId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "LeadStatus",
+      default: null,
+    },
   },
   {
     timestamps: true,

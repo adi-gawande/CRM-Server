@@ -1,6 +1,6 @@
 import mongoose from "mongoose";
 
-const councilSchema = new mongoose.Schema(
+const roleSchema = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -15,5 +15,5 @@ const councilSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-const Council = mongoose.model("Council", councilSchema);
-export default Council;
+const Role = mongoose.model("Role", roleSchema);
+export default Role;

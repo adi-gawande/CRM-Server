@@ -34,10 +34,10 @@ export const getUsers = async (req, res) => {
   try {
     const users = await User.find({ isActive: true })
       .populate("prefix")
-      .populate("currentEmploymentDetail.department")
+      // .populate("currentEmploymentDetail.department")
       .populate("currentEmploymentDetail.employeeRole")
-      .populate("currentEmploymentDetail.designation")
-      .populate("verifiedBy");
+      .populate("currentEmploymentDetail.designation");
+    // .populate("verifiedBy");
 
     res.status(200).json({
       success: true,
