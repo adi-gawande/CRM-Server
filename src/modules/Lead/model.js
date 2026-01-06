@@ -85,6 +85,19 @@ const leadSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
+    budget: {
+      type: String,
+      trim: true,
+    },
+    revenue: {
+      type: String,
+      trim: true,
+    },
+    renewalDate: {
+      type: Date,
+      default: null,
+      // trim: true,
+    },
     leadTypeId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "LeadType",
@@ -103,6 +116,16 @@ const leadSchema = new mongoose.Schema(
     leadStatusId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "LeadStatus",
+      default: null,
+    },
+    sizeId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Size",
+      default: null,
+    },
+    sectorId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Sector",
       default: null,
     },
   },

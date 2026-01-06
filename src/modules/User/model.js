@@ -139,10 +139,10 @@ const employeeSchema = new mongoose.Schema(
     // CURRENT EMPLOYMENT
     // ======================
     currentEmploymentDetail: {
-      department: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Department",
-      },
+      // department: {
+      //   type: mongoose.Schema.Types.ObjectId,
+      //   ref: "Department",
+      // },
 
       employeeRole: {
         type: mongoose.Schema.Types.ObjectId,
