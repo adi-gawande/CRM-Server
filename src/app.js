@@ -27,6 +27,7 @@ import departmentRoutes from "./modules/master/department/routes.js";
 import clientRoutes from "./modules/Client/routes.js";
 import leadRoutes from "./modules/Lead/routes.js";
 import prospectRoutes from "./modules/Prospect/routes.js";
+import fieldSettingsRoutes from "./modules/FieldSettings/routes.js";
 
 const app = express();
 
@@ -62,5 +63,6 @@ app.use("/lead", leadRoutes);
 app.use("/prospect", prospectRoutes);
 app.use("/post-graduation", postGraduationRoutes);
 app.use("/designation", designationRoutes);
+app.use("/field-settings", fieldSettingsRoutes);
 
 export default app;
