@@ -85,6 +85,49 @@ const clientSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
+    budget: {
+      type: String,
+      trim: true,
+    },
+    revenue: {
+      type: String,
+      trim: true,
+    },
+    renewalDate: {
+      type: Date,
+      default: null,
+      // trim: true,
+    },
+    leadTypeId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "LeadType",
+      default: null,
+    },
+    leadSourceId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "LeadSource",
+      default: null,
+    },
+    leadReferenceId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "LeadReference",
+      default: null,
+    },
+    leadStatusId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "LeadStatus",
+      default: null,
+    },
+    sizeId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Size",
+      default: null,
+    },
+    sectorId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Sector",
+      default: null,
+    },
   },
   {
     timestamps: true,
