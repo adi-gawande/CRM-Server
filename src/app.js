@@ -32,6 +32,7 @@ import invoiceRoutes from "./modules/invoice/routes.js";
 import taskRoutes from "./modules/task/routes.js";
 import prospectRoutes from "./modules/Prospect/routes.js";
 import fieldSettingsRoutes from "./modules/FieldSettings/routes.js";
+import ticketRoutes from "./modules/Ticket/routes.js";
 
 const app = express();
 
@@ -72,5 +73,6 @@ app.use("/prospect", prospectRoutes);
 app.use("/post-graduation", postGraduationRoutes);
 app.use("/designation", designationRoutes);
 app.use("/field-settings", fieldSettingsRoutes);
+app.use("/ticket", ticketRoutes);
 
 export default app;
